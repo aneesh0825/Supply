@@ -37,9 +37,15 @@ function setup() {
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
- 	World.add(world, ground);
-
-
+	 World.add(world, ground);
+	 bin1 = createSprite(500,height-70, 10,50);
+	 bin2 = createSprite (550, 650, 100,10);
+	 bin3=createSprite(600,height-70,10,50);
+	 /*
+	bin1 = new Bin (500,height-70, 10,50);
+	bin2 = new Bin (550, 650, 100,10);
+	bin3 = new Bin (600,height-70,10,50);
+	*/
 	Engine.run(engine);
   
 }
@@ -51,16 +57,27 @@ function draw() {
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
- 
+  /*
+	bin1.display();
+	bin2.display();
+	bin3.display();
+	*/
 }
 
 function keyPressed() {
+	if(keyCode === LEFT_ARROW) {
+		helicopterSprite.x -= 20;
+		Matter.Body.translate(packageBody,{x:-20,y:0});
+	}
+	if(keyCode === RIGHT_ARROW) {
+		helicopterSprite.x += 20;
+		Matter.Body.translate(packageBody,{x:20,y:0});
+	}
  if (keyCode === DOWN_ARROW) {
-	// Look at the hints in the document and understand how to make the package body fall only on
-	Matter.Body.setStatic(packageBody,false);
+    // Look at the hints in the document and understand how to make the package body fall only on
+    Matter.Body.setStatic(packageBody,false);
   }
- }
-
+}
 
 
 
